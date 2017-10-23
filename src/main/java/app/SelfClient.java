@@ -4,10 +4,12 @@ public class SelfClient {
 
 	private int queryPortNo ;
 	private int notificationPortNo ;
+	private String root ;
 	public SelfClient(int queryPortNo )
 	{
 		this.queryPortNo = queryPortNo ;
 		this.notificationPortNo = queryPortNo+1 ;
+		root="\\";
 	}
 	private static void console()
 	{
