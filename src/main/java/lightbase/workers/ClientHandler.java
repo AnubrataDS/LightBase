@@ -10,10 +10,12 @@ public class ClientHandler {
 
 	private Socket client;
 	private QueryHandler queryhandler ;
+	private String uid ;
 	
-	public ClientHandler(Socket client) {
+	public ClientHandler(Socket client,String uid) {
 		this.client = client;
-		this.queryhandler = new QueryHandler();
+		this.queryhandler = new QueryHandler(uid);
+		this.uid = uid ;
 	}
 
 	public void threadRunner() throws IOException {

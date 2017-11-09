@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
+import java.util.UUID;
 
 import lightbase.workers.ClientHandler;
 
@@ -17,6 +18,7 @@ public class DBService {
 	private ServerSocket socket;
 	private Notifier notifier ;
 	private FileManager fileManager ;
+	private UUID clientID ;
 	public DBService(int queryPortNo, int notificationPortNo, String fileName) {
 		this.queryPortNo = queryPortNo;
 		this.notificationPortNo = notificationPortNo;
@@ -40,7 +42,8 @@ public class DBService {
 	
 	private void newClient(Socket client)
 	{
-		ClientHandler clientHandler = new ClientHandler(client);
+		String uid = UUID.randomUUID().toString();
+		ClientHandler clientHandler = new ClientHandler(client,uid);
 		Thread newClientThread = new Thread(new Runnable(){
 			public void run()
 			{
